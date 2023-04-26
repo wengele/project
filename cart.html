@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="btn">
+            <!-- Button to decrease quantity -->
+            <button class="minBtn">-</button>
+
+            <!-- Button to increase quantity -->
+            <button class="plusBtn">+</button>
+
+            <!-- Button to add item to cart -->
+            <button class="mainBtn">select</button>
+            <button class="mainbtn1">ADD TO CART</button>
+
+        </div>
+    </div>
+
+    <script>
+        // Selecting elements from the DOM
+        let btn = document.querySelector(".mainBtn");
+        let mbtn = document.querySelector(".minBtn");
+        let pbtn = document.querySelector(".plusBtn");
+        let addbtn = document.querySelector(".mainbtn1");
+
+
+        // Adding event listener to increase quantity
+        pbtn.addEventListener("click", () => {
+            // Incrementing the quantity by 1
+            btn.innerText = parseInt(btn.innerText) + 1;
+
+            // Displaying the minus button
+            mbtn.style.display = 'inline-block';
+        })
+
+        // Adding event listener to decrease quantity
+        mbtn.addEventListener("click", () => {
+            // Decrementing the quantity by 1
+            btn.innerText = parseInt(btn.innerText) - 1;
+
+            // Hiding the minus button if quantity becomes 0
+            if (parseInt(btn.innerText) === 0) {
+                mbtn.style.display = 'none';
+            }
+        })
+
+        // Adding event listener to set quantity to 1
+        btn.addEventListener("click", () => {
+            btn.innerText = 0;
+
+            // Displaying the plus and minus buttons
+            pbtn.style.display = 'inline-block';
+            mbtn.style.display = 'inline-block';
+        })
+
+    </script>
+</body>
+
+</html>
