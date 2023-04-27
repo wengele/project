@@ -132,31 +132,14 @@
      
   
   <div>
-    <div style="display: grid; grid-template-columns: 1fr 4fr; margin-top:20px; gap:10px">
-      <div style="border: solid 2px black">
-      
-      <div><h3>filter </h3></div>
-      
-      
-      
-      </div>
 
-<div>
 
     <select name="" id="sort-select" onchange="compare()">
       
-      <option value="lowToHigh" id="lowToHigh">priceLowToHigh</option>
-      <option value="highToLow" id="highToLow">priceHighToLow</option>
-      <option value="ratings" id="highToLow">ratingsHigh</option>
-     
+      <option value="priceLowToHigh" id="lowToHigh">priceLowToHigh</option>
+      <option value="priceHighToLow" id="highToLow">priceHighToLow</option>
     </select>
 <div id="inventory-list"></div>
-</div>
-
-
-
-
-</div>
   </div>
 </div>
 
@@ -229,7 +212,7 @@
       for (let elem of obj) {
         div.innerHTML += `
 						<div style="display:flex;gap:10px;flex-wrap:wrap;">
-							<img src="/projectCS315/imageCollection/${elem.image}" style="height:100px;width:100px;object-fit: cover;">
+							<img src="projectCS315/imageCollection/living room furniture/${elem.image}" style="height:100px;width:100px;object-fit: cover;">
 							<div>
 								<div>${elem.name}</div>
 								<p>${elem.category}</p>
@@ -250,21 +233,20 @@
 // highToLow.addEventListener('change', compare);
 
 function compare() {
-    const selectElement = document.getElementById('sort-select');
+    const selectElement = document.getElementById('option:checked');
     console.log(selectElement);
     const selectedOption = selectElement.value;
 
-    let createList;
-    if (selectedOption === 'lowToHigh') {
-      createList = obj.sort((a, b) => a.price - b.price);
-    } else if (selectedOption === 'highToLow') {
-      createList = obj.sort((a, b) => b.price - a.price);
-    } else if (selectedOption === 'ratings') {
-      createList = obj.sort((a, b) => b.ratings - a.ratings);
-    } else {
-      createList = obj;
-    }
-    create(createList);
+    function compare(type) {
+  var obj = JSON.parse(localStorage.getItem('inventory'));
+  if (type === 'price') {
+    sortByPrice(obj);
+  } else if (type === 'name') {
+    sortByName(obj);
+  }
+  create(obj);
+}
+    
       
   const minusBtns = document.getElementsByClassName('minusBtn');
   const plusBtns = document.getElementsByClassName('plusBtn');
@@ -319,7 +301,6 @@ function compare() {
 
 
   </script>
-  
 
 </body>
 
