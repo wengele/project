@@ -32,6 +32,10 @@
         <select style="font-weight: 10px;color:rgba(0, 0, 255, 0.867);">
 
                     <option value="">US</option>
+                    <option value="">CANADA</option>
+                    <option value="">UK</option>
+                  
+
                   </select>
            
       </div>
@@ -59,7 +63,7 @@
 
                 <div>
           <div id="cartId">
-            <button onclick="display()"> <span type="button" id="cart-counter">0</span><img
+            <button onclick="display()" style="border-radius: 15px;"> <span type="button" id="cart-counter" >0</span><img
                 src="https://img.icons8.com/doodle/1x/shopping-cart.png" alt="" style="width:20px;"></button>
           </div>
 
@@ -132,12 +136,26 @@
      
   
   <div>
+
     <div style="display: grid; grid-template-columns: 1fr 4fr; margin-top:20px; gap:10px">
-      <div style="border: solid 2px black">
+      <div>
       
-      <div><h3>filter </h3></div>
+      <div> <label for=""><h3>filter </h3></label> 
+      </div>
       
-      
+      <select name="" id="filter" onchange="filterProducts()">
+        <option value="Categoryf" > Category</option>
+        <option value="min-rating">min Rating</option>
+        <option value="max-rating"> max Rating</option>
+        <option value="brandf"> Brand</option>
+        <option value="min-price"> min-price</option>
+        <option value="max-price">max- price</option>
+        <option value="clear"> clear all filter</option>
+
+      </select>
+
+
+      <button onclick="clearFilter()">clearFilter</button>
       
       </div>
 
@@ -191,11 +209,23 @@
     addToCartBtns[i].addEventListener('click', addToCart);
   }
 
+    let selected=[];
+    console.log(selected);
 
     function addToCart() {
+      
+
       const cartCounter = document.getElementById('cart-counter');
       const count = parseInt(cartCounter.innerText);
       cartCounter.innerText = count + 1;
+      let itemName = document.getElementById('nameSection').innerText;
+      let itemPrice = document.getElementById('priceSection').innerHTML;
+      let itemImageId = event.target.parentNode.parentNode.childNodes.getAttribute('id');
+      let itemImage = document.getElementById(itemImageId).getAttribute('value');
+      let itemRatings = document.getElementById('ratingSection').innerHTML;
+      selected.push({name:itemName,price:itemPrice,ratings:itemRatings});
+      localStorage.setItem('customer', JSON.stringify(selected));
+
     }
     function minusToCart() {
       const cartCounter = document.getElementById('cart-counter');
@@ -223,18 +253,18 @@
 
     }
     function create() {
-     // var div = document.getElementById('inventory-list');
+     var div = document.getElementById('inventory-list');
 
       div.innerHTML = "";
       for (let elem of obj) {
         div.innerHTML += `
 						<div style="display:flex;gap:10px;flex-wrap:wrap;">
-							<img src="/projectCS315/imageCollection/${elem.image}" style="height:100px;width:100px;object-fit: cover;">
+							<img src="/projectCS315/imageCollection/${elem.image}" id="imageSection" value="${elem.image}" style="height:100px;width:100px;object-fit: cover;">
 							<div>
-								<div>${elem.name}</div>
-								<p>${elem.category}</p>
-								<p>${elem.price}</p>
-								<p>${elem.ratings}</p>
+								<div id="nameSection">${elem.name}</div>
+								<p id="categorySection">${elem.category}</p>
+								<p id="priceSection">${elem.price}</p>
+								<p id="ratingSection">${elem.ratings}</p>
                 <button class="minusBtn" id="minus-to-cart">-</button>
                 <button class="plusBtn" id="plus-to-cart">+</button>
                 <button class="mainBtn" id="add-to-cart">Add To cart</button>
@@ -247,7 +277,9 @@
 // lowToHigh.addEventListener('change', compare);
 
 // const highToLow = document.getElementById('highToLow');
+
 // highToLow.addEventListener('change', compare);
+
 
 function compare() {
     const selectElement = document.getElementById('sort-select');
@@ -261,6 +293,8 @@ function compare() {
       createList = obj.sort((a, b) => b.price - a.price);
     } else if (selectedOption === 'ratings') {
       createList = obj.sort((a, b) => b.ratings - a.ratings);
+    } else if (selectedOption === 'name') {
+      createList = obj.sort((a, b) => b.name - a.name);
     } else {
       createList = obj;
     }
@@ -282,6 +316,96 @@ function compare() {
     addToCartBtns[i].addEventListener('click', addToCart);
   }
 }
+
+function filterProducts() {
+
+  const brandFilter = document.getElementById('brandf').value;
+
+  const categoryFilter = document.getElementById('categoryf').value;
+
+  const minPriceFilter = document.getElementById('min-price').value;
+
+  const maxPriceFilter = document.getElementById('max-price').value;
+
+  const minRatingFilter = document.getElementById('min-rating').value;
+
+  const maxRatingFilter = document.getElementById('max-rating').value;
+
+
+
+
+  const filteredProducts = obj.filter(product => {
+
+    if (brandFilter && product.brand !== brandFilter) {
+
+      return false;
+
+    }
+
+    if (categoryFilter && product.category !== categoryFilter) {
+
+      return false;
+
+    }
+
+    if (minPriceFilter && parseInt(product.price) < parseInt(minPriceFilter)) {
+
+      return false;
+
+    }
+
+    if (maxPriceFilter && parseInt(product.price) > parseInt(maxPriceFilter)) {
+
+      return false;
+
+    }
+
+    if (minRatingFilter && parseInt(product.ratings) < parseInt(minRatingFilter)) {
+
+      return false;
+
+    }
+
+    if (maxRatingFilter && parseInt(product.ratings) > parseInt(maxRatingFilter)) {
+
+      return false;
+
+    }
+
+    return true;
+
+  });
+
+
+
+
+  create(filteredProducts);
+
+}
+
+function clearFilter(){
+  const brandFilter = document.getElementById('brandf').value='';
+
+  const categoryFilter = document.getElementById('categoryf').value='';
+
+  const minPriceFilter = document.getElementById('min-price').value='';
+
+  const maxPriceFilter = document.getElementById('max-price').value='';
+
+  const minRatingFilter = document.getElementById('min-rating').value='';
+
+  const maxRatingFilter = document.getElementById('max-rating').value='';
+
+create(obj);
+
+
+}
+
+
+
+
+
+
 
 
 
@@ -319,7 +443,6 @@ function compare() {
 
 
   </script>
-  
 
 </body>
 
