@@ -129,14 +129,24 @@
       <script>
   var obj = JSON.parse(localStorage.getItem('customer'));
 
+  var inventory = JSON.parse(localStorage.getItem('inventory'));
+  
+
   create(obj);
-function create(obj) {
+  function create(obj) {
   var newDiv = document.getElementById('selected');
   newDiv.innerHTML = "";
   for (let elem of obj) {
+
+    let fi = inventory.filter((i) => {
+      return i.name == elem.name && i.price == elem.price;
+    })
+
+    let image = fi[0].image;
+
     newDiv.innerHTML += `
       <div style="display:flex;gap:10px;flex-wrap:wrap;">
-       <div> <img src="imageCollection/${elem.image}" style="height:100px;width:100px;object-fit: cover;">
+       <div> <img src="imageCollection/${image}" style="height:100px;width:100px;object-fit: cover;">
         
           <div>${elem.name}</div>
           <p>${elem.price}</p>
