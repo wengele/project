@@ -74,6 +74,8 @@
 
         var prodcutArray = JSON.parse(localStorage.getItem('inventory'));
 
+        if (prodcutArray == null) prodcutArray = []
+
         prodcutArray.forEach(element => {
             createRow(element.name, element.category,
                 element.quantity, element.price, element.brand, element.Description,
