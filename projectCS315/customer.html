@@ -118,81 +118,82 @@
               src="https://img.freepik.com/free-icon/box-closed_318-48060.jpg?size=626&ext=jpg" alt=""
               style="width: 15px;"> 52556</div>
         </div>
+      </div>
+      <div>
         <div style="color: blue;">
 
           Lists/ Buy Again
 
         </div>
 
-
-
       </div>
+
     </div>
 
+  </div>
 
 
 
 
+  <div>
 
-    <div>
+    <div style="display: grid; grid-template-columns: 1fr 4fr; margin-top:20px; gap:10px">
+      <div>
 
-      <div style="display: grid; grid-template-columns: 1fr 4fr; margin-top:20px; gap:10px">
-        <div>
-
-          <div> <label for="">
-              <h3>filter </h3>
-            </label>
-          </div>
-
-          <select name="" id="filter">
-            <option value="category"> Category</option>
-            <option value="min-rating">min Rating</option>
-            <option value="max-rating"> max Rating</option>
-            <option value="brandf"> Brand</option>
-            <option value="min-price"> min-price</option>
-            <option value="max-price">max- price</option>
-            <option value="clear"> clear all filter</option>
-
-          </select>
-
-
-          <button onclick="clearFilter()">clearFilter</button>
-
-          <div id="min-filter-data" style="display: none;">
-            <label for="min-price-value">Min Price</label>
-            <input type="number" id="min-price-value">
-          </div>
-
-          <div id="min-rating-data" style="display: none;">
-            <label for="max-rating-value">Max Rating</label>
-            <input type="number" id="max-rating-value">
-          </div>
-
-          <div id="min-category-data" style="display: none;">
-            <label for="category-value">Max Rating</label>
-            <select name="categories" id="category-select"></select>
-          </div>
-
+        <div> <label for="">
+            <h3>filter </h3>
+          </label>
         </div>
 
-        <div>
+        <select name="" id="filter">
+          <option value="category"> Category</option>
+          <option value="min-rating">min Rating</option>
+          <option value="max-rating"> max Rating</option>
+          <option value="brandf"> Brand</option>
+          <option value="min-price"> min-price</option>
+          <option value="max-price">max- price</option>
+          <option value="clear"> clear all filter</option>
 
-          <select name="" id="sort-select" onchange="compare()" style="margin: 20px">
+        </select>
 
-            <option value="lowToHigh" id="lowToHigh">priceLowToHigh</option>
-            <option value="highToLow" id="highToLow">priceHighToLow</option>
-            <option value="ratings" id="highToLow">ratingsHigh</option>
-            <option value="name" id="name">name</option>
 
-          </select>
-          <div id="inventory-list"></div>
+        <button onclick="clearFilter()">clearFilter</button>
+
+        <div id="min-filter-data" style="display: none;">
+          <label for="min-price-value">Min Price</label>
+          <input type="number" id="min-price-value">
         </div>
 
+        <div id="min-rating-data" style="display: none;">
+          <label for="max-rating-value">Max Rating</label>
+          <input type="number" id="max-rating-value">
+        </div>
 
-
+        <div id="min-category-data" style="display: none;">
+          <label for="category-value">Max Rating</label>
+          <select name="categories" id="category-select"></select>
+        </div>
 
       </div>
+
+      <div>
+
+        <select name="" id="sort-select" onchange="compare()" style="margin: 20px">
+
+          <option value="lowToHigh" id="lowToHigh">priceLowToHigh</option>
+          <option value="highToLow" id="highToLow">priceHighToLow</option>
+          <option value="ratings" id="highToLow">ratingsHigh</option>
+          <option value="name" id="name">name</option>
+
+        </select>
+        <div id="inventory-list"></div>
+      </div>
+
+
+
+
     </div>
+  </div>
   </div>
 
 
@@ -458,7 +459,7 @@
   </script>
 
   <footer id="mainFooter"
-    style="margin-top: 100px; background-color: rgb(243, 236, 236); padding: 50px; width: 100%;height:100%; ">
+    style="margin-top: 100px; background-color: rgb(243, 236, 236); padding: 50px; width: 100%;height:100%; color: rgb(83, 81, 81); ">
 
     <div style="padding:20px; display: flex; gap:100px;justify-content: left; padding-left:100px; font-size: 20px;">
 
@@ -473,17 +474,25 @@
       <div>Find a Warehouse <br>
         <input type="text" placeholder="City, state or zip" style="min-height:30px;width:120%;">
       </div>
-      <div>Get Email Offers</div>
+      <div>Get Email Offers
+        <br>
+        <input type="text" placeholder="Enter Email Address" style="min-height:30px;width:120%;">
+      </div>
       <div>follow <br>
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png"
           alt="" style="width: 20px; object-fit:cover;">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174863.png" alt="" style="width: 20px; object-fit:cover;">
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png"
           alt="" style="width: 20px; object-fit:cover;">
 
       </div>
-      <div>Get the Costco App</div>
+      <div>Get the Costco App
+        <br>
+        <img src="https://companieslogo.com/img/orig/COST-180a6d1f.png?t=1633439405" alt=""
+          style="width: 20px; object-fit:cover;">
+      </div>
 
 
 
