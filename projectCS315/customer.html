@@ -297,12 +297,14 @@
         div.innerHTML += `
 						<div style="gap: 10px; display: grid; grid-template-columns: 4fr 1fr;">
 							<div>
-								<img src="imageCollection/Bed/${elem.image}" class="imageSection" value="${elem.image}" style="height:100px;width:100px;object-fit: cover;">
+								<img src="projectCS315/imageCollection/${elem.image}" class="imageSection" value="${elem.image}" style="height:200px;width:200px;object-fit: cover;">
+								<div>
                 <label class="id" value=${elem.prodcutId} > 
 								<label id="nameSection">${elem.name}</label>
 								<label id="categorySection">${elem.category}</label>
-								<label id="priceSection">$${elem.price}</label>
 								<label id="ratingSection">${elem.ratings}</label>
+								</div>
+								<label id="priceSection">$${elem.price}</label>
 								<div>
                 <button class="minusBtn" id="minus-to-cart">-</button>
                 <button class="plusBtn" id="plus-to-cart">+</button>
@@ -329,8 +331,7 @@
 
       let createList;
       if (selectedOption === 'lowToHigh') {
-        obj.
-          createList = obj.slice().sort((a, b) => a.price - b.price);
+        createList = obj.slice().sort((a, b) => a.price - b.price);
       } else if (selectedOption === 'highToLow') {
         createList = obj.slice().sort((a, b) => b.price - a.price);
       } else if (selectedOption === 'ratings') {
@@ -457,6 +458,7 @@
     }
 
   </script>
+
 
   <footer id="mainFooter"
     style="margin-top: 100px; background-color: rgb(243, 236, 236); padding: 50px; width: 100%;height:100%; color: rgb(83, 81, 81); ">
@@ -585,15 +587,27 @@
       </div>
     </div>
     <hr>
-    <div class="box" style="text-align: center;">
-      <div for="">
-        <label for="">Site Map</label><label>Terms and Conditions</label>
-        <label for="">Your Privacy Rights</label><label>CA Notice</label>
-        <label for="">Cookie Settings</label><label>Your Privacy Choices</label><label for="">Feedback</label>
-      </div>
-      <div>&copy;1998 — 2023 Costco Wholesale Corporation. All rights reserved</div>
 
-    </div>
+    <div class="box" style="text-align: center; justify-content: center;">
+
+              <div for="" style="display: flex;gap:20px; justify-content: center;">
+
+                  <label for="">Site Map</label><label>Terms and Conditions</label>
+
+                  <label for="">Your Privacy Rights</label><label>CA Notice</label>
+
+                  <label for="">Cookie Settings</label><label><img
+            src="https://mobilecontent.costco.com/live/resource/img/static-us-landing-pages/icon-privacy-choices.svg"
+            alt="" style="width:20px; object-fit: cover;"> Your Privacy Choices</label><label for="">Feedback</label>
+
+                </div>
+
+              <div  style="display: flex;gap:20px; justify-content: center;">&copy;1998 — 2023 Costco Wholesale
+        Corporation. All rights reserved</div>
+
+       
+
+            </div>
 
   </footer>
 
