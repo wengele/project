@@ -8,82 +8,40 @@
     <title>Document</title>
     <style>
         table {
-            border-collapse: collapse;
-            border-spacing: 0;
+            border: 1px solid blue;
             width: 100%;
             border: 1px solid #dddddd;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        th,
-        td {
+        th {
+            background-color: #f5f5f5;
+            font-size: 12px;
+            font-weight: bold;
             text-align: left;
-            padding: 16px;
+            padding: 15px;
+        }
+
+        td {
+            font-size: 12px;
+            text-align: left;
+            padding: 15px;
         }
 
         tr:nth-child(even) {
-            background-color: #b6b2b2;
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e6e6e6;
         }
     </style>
-
-</head>
-
-<body>
-    <header
-        style="font-style: italic;color:darkred;border:2px solid red;text-align: center;font-size: larger;background-color: azure;">
-        Welcome to the Inventory Page
-        in this page you can add,edit and delete your items.
-    </header><br>
-    Name:<input type="text" id='itemName' />
-    Category:<input type="text" id='category' />
-    Quantity:<input type="number" id='quantity' />
-    Price:<input type="number" id='price' />
-    Brand:<input type="text" id='brand' />
-    Description:<input type="text" id='itemDescription' />
-    ProductID:<input type="text" id='itemProductID' value="productID" />
-    Image:<input type="text" id='itemImage' />
-    <select id='itemRatings' class="rating">
-        Ratings
-        <option value="1">★</option>
-        <option value="2">★★</option>
-        <option value="3">★★★</option>
-        <option value="4">★★★★</option>
-        <option value="5">★★★★★</option>
-    </select>
-    <button onclick="add();">Add</button>
-    <table id='myTable'>
-        <tr>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Quantity</th>
-            <th>Price</th>
-            <th>Brand</th>
-            <th>Description</th>
-            <th>ProductID</th>
-            <th>imageURL</th>
-            <th>Ratings</th>
-        </tr>
-    </table>
-
-
 
     <script>
 
 
-        let table = document.getElementById('myTable');
-
-
-        var prodcutArray = JSON.parse(localStorage.getItem('inventory'));
-
-        if (prodcutArray == null) prodcutArray = []
-
-        prodcutArray.forEach(element => {
-            createRow(element.name, element.category,
-                element.quantity, element.price, element.brand, element.Description,
-                element.productId, element.image, element.ratings);
-
-        });
-
-
+        var prodcutArray = [];
+        console.log(prodcutArray);
 
         // //Set Item on every change to the object array, add, delete and edit
         //  localStorage.setItem('inventory', JSON.stringify(prodcutArray));
@@ -99,37 +57,25 @@
             let itemProductID = document.getElementById('itemProductID').value;
             let itemImage = document.getElementById('itemImage').value;
             let itemRatings = document.getElementById('itemRatings').value;
-            prodcutArray.push({
-                name: itemName, category: itemCategory, quantity: Number(itemQuantity),
-                price: Number(itemPrice), brand: itemBrand, Description: itemDescription,
-                productId: itemProductID, image: itemImage, ratings: Number(itemRatings)
-            });
+            prodcutArray.push({ name: itemName, category: itemCategory, quantity: itemQuantity, price: itemPrice, brand: itemBrand, Description: itemDescription, productId: itemProductID, image: itemImage, ratings: itemRatings });
             localStorage.setItem('inventory', JSON.stringify(prodcutArray));
-
-
-
-
-            createRow(itemName, itemCategory, itemQuantity, itemPrice, itemBrand, itemDescription, itemProductID, itemImage, itemRatings);
-
-        }
-
-        function createRow(itemName, itemCategory, itemQuantity, itemPrice, itemBrand, itemDescription, itemProductID, itemImage, itemRatings) {
             let newRow = document.createElement('tr')
 
             newRow.innerHTML = `<td for="itemName">${itemName}</td>
-                                <td for="itemCategory">${itemCategory}</td>
-                                <td for="itemQuantity">${itemQuantity}</td>
-                                <td for="itemPrice">${itemPrice}</td>
-                                <td for="itemBrand">${itemBrand}</td>
-                                <td for="itemDescription">${itemDescription}</td>
-                                <td for="itemProductID">${itemProductID}</td>
-                                <td for="itemImage">${itemImage}</td>
-                                <td for="itemRatings">${itemRatings}</td>
-                                <td><button onclick="editRow(this);">Edit</button></td>
-                                <td><button onclick="deleteRow(this);">Delete</button></td>`;
+    <td for="itemCategory">${itemCategory}</td>
+    <td for="itemQuantity">${itemQuantity}</td>
+    <td for="itemPrice">${itemPrice}</td>
+    <td for="itemBrand">${itemBrand}</td>
+    <td for="itemDescription">${itemDescription}</td>
+    <td for="itemProductID">${itemProductID}</td>
+    <td for="itemImage">${itemImage}</td>
+    <td for="itemRatings">${itemRatings}</td>
+    <td><button onclick="editRow(this);">Edit</button></td>
+    <td><button onclick="deleteRow(this);">Delete</button></td>`;
+            let table = document.getElementById('myTable');
             table.append(newRow);
-        }
 
+        }
         function editRow(self) {
             let parent = self.parentElement.parentElement;
             for (let i = 0; i < parent.children.length; i++) {
@@ -171,7 +117,49 @@
         }
 
     </script>
+</head>
 
+<body>
+    <header
+        style="font-style: italic;color:darkred;border:2px solid red;text-align: center;font-size: larger;background-color: azure;">
+        Welcome to the Inventory Page
+        in this page you can add,edit and delete your items.
+    </header><br>
+    <div
+        style="margin:20px;padding:20px;border:10 solid 2px;border:2px solid green;width:200pxpx;height:300px;border-radius: 40px;gap:20px;">
+        <label for=""> Name:<input type="text" id='itemName' /></label>
+        <label for=""> Category:<input type="text" id='category' /></label>
+        <label for=""> Quantity:<input type="text" id='quantity' /></label>
+        <label for=""></label> Price:<input type="text" id='price' /></label>
+        <label for="">Brand:<input type="text" id='brand' /></label>
+        <label for=""></label> Description:<input type="text" id='itemDescription' /></label>
+        <label for=""></label> ProductID:<input type="text" id='itemProductID' value="" /></label>
+        <label for=""> Image:<input type="text" id='itemImage' /></label>
+        <select id='itemRatings' class="rating"></label>
+            Ratings
+            <option value="1">★</option>
+            <option value="2">★★</option>
+            <option value="3">★★★</option>
+            <option value="4">★★★★</option>
+            <option value="5">★★★★★</option>
+        </select>
+        <button onclick="add();">Add</button>
+    </div>
+    <table id='myTable'>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Brand</th>
+            <th>Description</th>
+            <th>ProductID</th>
+            <th>imageURL</th>
+            <th>Ratings</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </table>
 </body>
 
 </html>
